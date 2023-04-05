@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3 class="text-center"> Employee Register </h3>
+        <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" [(ngModel)]="this.employee.name"
+                    required="true" minlength="3" maxlength="20" placeholder="Enter your name..." #name="ngModel">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-danger">
+                    <div *ngIf="name.errors.required" class="p-1">
+                        <small>
+                            Enter your name please.
+                        </small>
+                    </div>
+                    <div *ngIf="name.errors.minlength" class="p-1">
+                        <small>
+                            The name must have three characteres minimum
+                        </small>
+                    </div>
+                    <div *ngIf="name.errors.maxlength" class="p-1">
+                        <small>
+                            The name must have twenty characteres maxim
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class=" form-group">
+                <label for="lastname">Lastname:</label>
+                <input type="text" id="lastname" name="lastname" class="form-control" [(ngModel)]="this.employee.lastname"
+                    required="true" minlength="3" maxlength="20" placeholder="Enter your lastname..."
+                    #lastname="ngModel">
+                <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert-danger">
+                    <div *ngIf="lastname.errors.required" class="p-1">
+                        <small>
+                            Enter your lastname please.
+                        </small>
+                    </div>
+                    <div *ngIf="lastname.errors.minlength" class="p-1">
+                        <small>
+                            The lastname must have three characteres minimum
+                        </small>
+                    </div>
+                    <div *ngIf="lastname.errors.maxlength" class="p-1">
+                        <small>
+                            The lastname must have twenty characteres maxim
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" [(ngModel)]="this.employee.email"
+                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                    required="true" placeholder="Enter your email..." #email="ngModel">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert-danger">
+                    <div *ngIf="email.errors.required" class="p-1">
+                        <small>
+                            Enter your email please.
+                        </small>
+                    </div>
+                    <div *ngIf="email.errors.pattern" class="p-1">
+                        <small>
+                            Invalid email. Format: user123@gmail.com
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <button *ngIf="!this.idParam" class="btn btn-success" [disabled]="!employeeForm.form.valid" >Save register</button>
+            <button *ngIf="this.idParam" class="btn btn-success" [disabled]="!employeeForm.form.valid">Update register</button>
+        </form>
+    </div>
+</div>
